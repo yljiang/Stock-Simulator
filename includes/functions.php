@@ -96,6 +96,7 @@
             "symbol" => $data[0],
             "name" => $data[1],
             "price" => $data[2],
+       
         ];
     }
 

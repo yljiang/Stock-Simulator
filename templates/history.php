@@ -3,6 +3,7 @@
     <li><a href="buy.php">Buy</a></li>
     <li><a href="sell.php">Sell</a></li>
     <li><a href="history.php">History</a></li>
+    <li><a href="settings.php">Settings</a></li>
     <li><a href="logout.php"><b>Log Out</b></a></li>
 </ul>
 
@@ -14,16 +15,16 @@
     <th class="head">Price</th>
     
     <?php
-#        foreach($rows as $item){
-#        print("<tr>");
-#            print("<td>" .$item["transaction"] . "</td>");
-#            print("<td>" .$item["date"] . "</td>");
-#            print("<td>" .$item["symbol"] . "</td>");
-#            print("<td>$" .$item["shares"] . "</td>");
-#            print("<td>$" .number_format($item["price"],2) . "</td>");
-#            print("</tr>");
-#        
-#        }
+        foreach($rows as $item){
+        print("<tr>");
+            print("<td class='centered'>" .$item["transaction"] . "</td>");
+            print("<td class='centered'>" .$item["date"] . "</td>");
+            print("<td class='centered'>" .$item["symbol"] . "</td>");
+            print("<td class='centered'>" .$item["shares"] . "</td>");
+            print("<td class='centered'>$" .number_format($item["price"],2) . "</td>");
+            print("</tr>");
+        
+        }
     ?>
 </table>
 

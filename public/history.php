@@ -1,7 +1,7 @@
 <?php
     require("../includes/config.php");
    
-    $rows=query("SELECT * FROM history WHERE id=?",$_SESSION["id"]);
+    $rows=query("SELECT * FROM history WHERE id=? ORDER BY Date DESC",$_SESSION["id"]);
     $positions=[];
     
     if ($rows !== false){
@@ -9,16 +9,17 @@
     
         foreach ($rows as $row){
             $positions[]=[
-                "transaction"=>$row["transaction"],
-                "date"=>$row["date"],
-                "symbol"=>$row["symbol"],
-                "shares" =>$row["shares"],
-                "price"=>$row["price"]
+                "transaction"=>$row["Transaction"],
+                "date"=>$row["Date"],
+                "symbol"=>$row["Symbol"],
+                "shares" =>$row["Shares"],
+                "price"=>$row["Price"]
             
             ];
     
         }
-    }else{
-        render("history.php",["rows"=>$positions,"title"=>"History"]);
     }
+    
+    render("history.php",["rows"=>$positions,"title"=>"History"]);
+    
 ?>

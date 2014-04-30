@@ -4,6 +4,7 @@
     <li><a href="buy.php">Buy</a></li>
     <li><a href="sell.php">Sell</a></li>
     <li><a href="history.php">History</a></li>
+    <li><a href="settings.php">Settings</a></li>
     <li><a href="logout.php"><b>Log Out</b></a></li>
 </ul>
 

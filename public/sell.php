@@ -11,7 +11,7 @@
           ];
     }
     
-    render("sell_form.php",["symbol"=>$symbol,"title"=>"Sell"]);        
+         
     
     if($_SERVER["REQUEST_METHOD"]=="POST"){
      
@@ -25,10 +25,11 @@
 
             //if user holds the stock, delete it from database
             query("DELETE FROM portfolio WHERE id=? AND symbol =?",$_SESSION["id"],$_POST["symbol"]);  
-        
             //update cash balances
-            query("UPDATE users SET cash = cash + ".number_format($stock["price"]*$shares[0]["shares"],2) .  " WHERE id=?",$_SESSION["id"]);
-            
+            query("UPDATE users SET cash = cash + ".$stock["price"]*$shares[0]["shares"] .  " WHERE id=?",$_SESSION["id"]);
+            //add to history table
+            query("INSERT INTO history (id,Transaction,Symbol,Shares,Price) VALUES (".$_SESSION["id"].",'SELL',UPPER('".$_POST["symbol"]."'),".$shares[0]["shares"].",".$stock["price"].")");
+               
             redirect("/");
             
         }else{
@@ -36,8 +37,8 @@
         }
     
     
+    }else{
+      render("sell_form.php",["symbol"=>$symbol,"title"=>"Sell"]); 
     }
-    
-    
 
 ?>

@@ -1,7 +1,7 @@
 <?php
     require("../includes/config.php");
     
-    render("buy_form.php",["title"=>"Buy"]);
+    
     $cash =query("SELECT cash FROM users WHERE id=?",$_SESSION["id"])[0]["cash"];
     
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -17,17 +17,21 @@
             if($price * $_POST["shares"] < $cash){
                 //Inset purchase in portfolio and update cash
                 query("INSERT INTO portfolio (id, symbol, shares) VALUES (".$_SESSION["id"].",UPPER('".$_POST["symbol"]."'),".$_POST["shares"].") ON DUPLICATE  KEY UPDATE shares = shares +VALUES(shares)"); 
-                query("UPDATE users SET cash = cash - " . number_format($price*$_POST["shares"],2) ." WHERE id=?",$_SESSION["id"]);
-            
+                //update cash balances
+                query("UPDATE users SET cash = cash - " . $price*$_POST["shares"] ." WHERE id=?",$_SESSION["id"]);
+                //add entry to history table
+                query("INSERT INTO history (id,Transaction,Symbol,Shares,Price) VALUES (".$_SESSION["id"].",'BUY',UPPER('".$_POST["symbol"]."'),".$_POST["shares"].",".$price.")");
                 redirect("/");
             
             }else{
-                apologize("Sorry, insufficient funds.");
+                    apologize("Insufficient funds.");
                 }
         }else{
             apologize("The symbol does not exist");
         }
         }
+    }else{
+        render("buy_form.php",["title"=>"Buy"]);
     }
 
 ?>

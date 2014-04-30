@@ -1,9 +1,5 @@
 /**
  * styles.css
- *
- * Computer Science 50
- * Problem Set 7
- *
  * Global CSS.
  */
 
@@ -31,4 +27,7 @@
 
     /* surround with whitespace */
     margin: 20px;
+}
+.table .head{
+    text-align:center;
 }

@@ -9,11 +9,11 @@
 
 <br>
 <table class="table table-striped">
-    <th style="text-align:center"> Symbol</th>
-    <th style="text-align:center"> Name</th>
-    <th style="text-align:center"> Shares</th>
-    <th style="text-align:center"> Price</th>
-    <th style="text-align:center"> Total</th>
+    <th class="head"> Symbol</th>
+    <th class="head"> Name</th>
+    <th class="head"> Shares</th>
+    <th class="head"> Price</th>
+    <th class="head"> Total</th>
     
     <?php
     

@@ -28,7 +28,9 @@
             
             
         }
+        print("<tr>");
         print("<td>CASH</td>");print("<td></td>");print("<td></td>");print("<td></td>");
         print("<td>$".number_format($cash[0]["cash"],2)."</td>");
+        print("</tr>");
     ?>
 </table>

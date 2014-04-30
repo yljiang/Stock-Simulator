@@ -22,14 +22,12 @@
         if($check !== false){
             $stock = lookup($_POST["symbol"]); //Look up price of stock
             $shares=query("SELECT shares FROM portfolio WHERE id=? AND symbol=?",$_SESSION["id"],$_POST["symbol"]);//Retrieve # of shares owned
-            
+
             //if user holds the stock, delete it from database
-            query("DELETE FROM portfolio WHERE id=? AND symbol =?",$_SESSION["id"],$_POST["symbol"]);
-            alert($_POST["symbol"]." has been sold.");
-            
-            
+            query("DELETE FROM portfolio WHERE id=? AND symbol =?",$_SESSION["id"],$_POST["symbol"]);  
+        
             //update cash balances
-            query("UPDATE users SET cash = cash + ? WHERE id=?",number_format($stock["price"]*$shares[0]["shares"],2),$SESSION["id"]);
+            query("UPDATE users SET cash = cash + ".number_format($stock["price"]*$shares[0]["shares"],2) .  " WHERE id=?",$_SESSION["id"]);
             
             redirect("/");
             
